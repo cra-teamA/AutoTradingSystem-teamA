@@ -15,6 +15,6 @@ class MockDriver(ABC):
     def login(self, id, password):
         ...
     @abstractmethod
-    def get_price(self, id, password, stock_code):
+    def get_price(self, stock_code):
         ...
 
