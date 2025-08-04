@@ -11,16 +11,18 @@ class StockBrockerDriverInterface:
         self._is_logined = True
         print('login')
 
+    def check_login(self):
+        if not self._is_logined:
+            raise Exception("Please login")
 
     def get(self, stock):
+        self.check_login()
         return self._driver.get_price(stock)
 
     def buy(self, stock, count, price):
+        self.check_login()
         return self._driver.buy(stock, count, price)
 
     def sell(self, stock, count, price):
+        self.check_login()
         return self._driver.sell(stock, count, price)
-
-
-
-
