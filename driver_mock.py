@@ -1,9 +1,8 @@
 from abc import abstractmethod, ABC
 
 
-class MockDriver(ABC):
-    def __init__(self, driver: MockDriver):
-        self.driver = driver
+class Driver(ABC):
+    def __init__(self):
         ...
     @abstractmethod
     def buy(self, stock_code, count, price):
@@ -17,4 +16,6 @@ class MockDriver(ABC):
     @abstractmethod
     def get_price(self, stock_code):
         ...
+class MockDriver(Driver):
+    ...
 
