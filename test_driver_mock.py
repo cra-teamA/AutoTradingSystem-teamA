@@ -7,11 +7,11 @@ COUNT = 1
 PRICE = 100000
 
 def test_interface_creation():
-    interface = DriverMock()
+    interface = MockDriver()
 
     assert interface is not None
 def test_login(capsys):
-    interface = DriverMock()
+    interface = MockDriver()
     try:
         interface.login(ID, PW)
     except:
@@ -19,11 +19,11 @@ def test_login(capsys):
     catured = capsys.readouterr()
     assert 'login success' in catured.out
 def test_get():
-    interface = DriverMock()
+    interface = MockDriver()
     ret = interface.get(STOCK)
     assert isinstance(ret, int)
 def test_buy(capsys):
-    interface = DriverMock()
+    interface = MockDriver()
     try:
         interface.buy(STOCK, COUNT, PRICE)
     except:
@@ -31,7 +31,7 @@ def test_buy(capsys):
     catured = capsys.readouterr()
     assert 'success to purchase' in catured.out
 def test_sell(capsys):
-    interface = DriverMock()
+    interface = MockDriver()
     try:
         interface.sell(STOCK, COUNT, PRICE)
     except:
