@@ -12,7 +12,7 @@ def driver_interface(mocker):
     driver = mocker.Mock()
     driverif = StockBrockerDriverInterface(driver)
     driverif.login(ID, PW)
-    return driverif
+    return driverif, driver
 
 
 def test_interface_creation(driver_interface_data):
