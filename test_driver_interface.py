@@ -1,23 +1,39 @@
 import pytest
+from pytest_mock import MockFixture
 
 
-def test_interface_creation():
-    interface = StockBrockerDriverInterface()
+@pytest.fixture
+def driver_interface(mocker):
+    driver = mocker.Mock()
+    return StockBrockerDriverInterface(driver), driver
 
-    assert interface is not None
-def test_login(capsys):
-    interface = StockBrockerDriverInterface()
+
+def test_interface_creation(driver_interface_data):
+    driver_interface, driver = driver_interface_data
+    assert driver_interface is not None
+
+
+def test_login(capsys, driver_interface_data):
+    driver_interface, driver = driver_interface_data
     try:
-        interface.login()
+        driver_interface.login()
     except:
         pytest.fail()
     catured = capsys.readouterr()
     assert 'login' in catured.out
-def test_get():
+    assert driver.login.called == 1
+
+
+def test_get(driver_interface_data):
+    driver_interface, driver = driver_interface_data
     interface = StockBrockerDriverInterface()
     ret = interface.get()
     assert isinstance(ret, int)
-def test_buy(capsys):
+    assert driver.get.called == 1
+
+
+def test_buy(capsys, driver_interface_data):
+    driver_interface, driver = driver_interface_data
     interface = StockBrockerDriverInterface()
     try:
         interface.buy()
@@ -25,7 +41,11 @@ def test_buy(capsys):
         pytest.fail()
     catured = capsys.readouterr()
     assert 'stock' in catured.out
-def test_sell(capsys):
+    assert driver.buy.called == 1
+
+
+def test_sell(capsys, driver_interface_data):
+    driver_interface, driver = driver_interface_data
     interface = StockBrockerDriverInterface()
     try:
         interface.sell()
@@ -33,3 +53,4 @@ def test_sell(capsys):
         pytest.fail()
     catured = capsys.readouterr()
     assert 'stock' in catured.out
+    assert driver.sell.called == 1
