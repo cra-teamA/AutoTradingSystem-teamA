@@ -44,10 +44,10 @@ def test_login_fail(capsys, driver_interface_data):
 
 def test_get(driver_interface_data):
     driver_interface, driver = driver_interface_data
-    driver.get.return_value = 1
+    driver.get_price.return_value = 1
     ret = driver_interface.get(STOCK)
     assert isinstance(ret, int)
-    assert driver.get.called == 1
+    assert driver.get_price.called == 1
 
 
 def test_buy(capsys, driver_interface_data):

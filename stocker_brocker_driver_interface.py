@@ -13,7 +13,7 @@ class StockBrockerDriverInterface:
 
 
     def get(self, stock):
-        return self._driver.get(stock)
+        return self._driver.get_price(stock)
 
     def buy(self, stock, count, price):
         return self._driver.buy(stock, count, price)
