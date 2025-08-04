@@ -1,5 +1,5 @@
 import pytest
-from pytest_mock import MockFixture
+from pytest_mock import MockFixture, mocker
 from driver_mock import MockDriver
 
 
@@ -12,9 +12,10 @@ STOCK = 'SAMSUNG'
 COUNT = 1
 PRICE = 100000
 
+
 @pytest.fixture
 def driver_interface_data(mocker):
-    driver = MockDriver()
+    driver = mocker.Mock(spec = MockDriver)
     driverif = StockBrockerDriverInterface(driver)
     driverif.login(ID, PW)
     return driverif, driver
@@ -26,7 +27,7 @@ def test_interface_creation(driver_interface_data):
 
 
 def test_login(capsys, mocker):
-    driver = MockDriver()
+    driver = mocker.Mock(spec = MockDriver)
     driverif = StockBrockerDriverInterface(driver)
     try:
         driverif.login(ID, PW)
@@ -39,12 +40,11 @@ def test_login(capsys, mocker):
 def test_login_fail(capsys, driver_interface_data):
     driver_interface, driver = driver_interface_data
 
-    driver_interface.login(ID, PW)
     with pytest.raises(Exception):
         driver_interface.login(ID, PW)
 
     catured = capsys.readouterr()
-    assert 'alreasy logined' in catured.out
+    assert 'already logined' in catured.out
 
     assert driver.login.called == 1
 
