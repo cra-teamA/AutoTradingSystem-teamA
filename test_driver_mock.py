@@ -42,3 +42,20 @@ def test_sell(capsys):
         pytest.fail()
     catured = capsys.readouterr()
     assert 'success to sell' in catured.out
+def test_get_increased_price():
+    interface = MockIncreasingDriver()
+    ret1 = interface.get_price(STOCK)
+    ret2 = interface.get_price(STOCK)
+    ret3 = interface.get_price(STOCK)
+    assert isinstance(ret1, int) and isinstance(ret2, int) and isinstance(ret3, int)
+    assert ret1 < ret2
+    assert ret2 < ret3
+
+def test_get_decreased_price():
+    interface = MockDecreasingDriver()
+    ret1 = interface.get_price(STOCK)
+    ret2 = interface.get_price(STOCK)
+    ret3 = interface.get_price(STOCK)
+    assert isinstance(ret1, int) and isinstance(ret2, int) and isinstance(ret3, int)
+    assert ret1 > ret2
+    assert ret2 > ret3
