@@ -48,7 +48,6 @@ def test_login_fail(capsys, driver_interface_data_with_login):
 
     catured = capsys.readouterr()
     assert 'already logined' in catured.out
-
     assert driver.login.called == 1
 
 
