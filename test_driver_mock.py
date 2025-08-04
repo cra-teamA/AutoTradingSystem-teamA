@@ -42,7 +42,6 @@ def test_sell(capsys):
         pytest.fail()
     catured = capsys.readouterr()
     assert 'success to sell' in catured.out
-
 def test_get_increased_price():
     interface = MockIncreasingDriver()
     ret1 = interface.get_price(STOCK)
