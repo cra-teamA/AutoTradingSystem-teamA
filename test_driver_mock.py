@@ -19,10 +19,12 @@ def test_login(capsys):
         pytest.fail()
     catured = capsys.readouterr()
     assert 'login success' in catured.out
+
 def test_get():
     interface = MockDriver()
-    ret = interface.get(STOCK)
+    ret = interface.get_price(STOCK)
     assert isinstance(ret, int)
+
 def test_buy(capsys):
     interface = MockDriver()
     try:
@@ -31,6 +33,7 @@ def test_buy(capsys):
         pytest.fail()
     catured = capsys.readouterr()
     assert 'success to purchase' in catured.out
+
 def test_sell(capsys):
     interface = MockDriver()
     try:
