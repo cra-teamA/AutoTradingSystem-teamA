@@ -1,5 +1,5 @@
 import pytest
-from driver_mock import MockDriver
+from driver_mock import MockDriver, MockIncreasingDriver, MockDecreasingDriver
 
 ID = 'id'
 PW = 'pw'
