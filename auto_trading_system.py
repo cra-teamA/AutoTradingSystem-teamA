@@ -9,7 +9,10 @@ class AutoTradingSystem:
     def login(self, id):
         ...
 
-    def buy(self, code, price, quantity):
+    def buy(self, code, price, quantity): #refactor : interface에 추가
+        ...
+
+    def sell(self, code, price, quantity): #refactor : interface에 추가
         ...
 
     def getPrice(self, code):
