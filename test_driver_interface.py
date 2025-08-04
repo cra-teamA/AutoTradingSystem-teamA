@@ -13,14 +13,10 @@ def test_login(capsys):
         pytest.fail()
     catured = capsys.readouterr()
     assert 'login' in catured.out
-def test_get(capsys):
+def test_get():
     interface = StockBrockerDriverInterface()
-    try:
-        interface.get()
-    except:
-        pytest.fail()
-    catured = capsys.readouterr()
-    assert 'login' in catured.out
+    ret = interface.get()
+    assert isinstance(ret, int)
 def test_buy(capsys):
     interface = StockBrockerDriverInterface()
     try:
@@ -28,7 +24,7 @@ def test_buy(capsys):
     except:
         pytest.fail()
     catured = capsys.readouterr()
-    assert 'login' in catured.out
+    assert 'stock' in catured.out
 def test_sell(capsys):
     interface = StockBrockerDriverInterface()
     try:
@@ -36,4 +32,4 @@ def test_sell(capsys):
     except:
         pytest.fail()
     catured = capsys.readouterr()
-    assert 'login' in catured.out
+    assert 'stock' in catured.out
