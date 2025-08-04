@@ -20,6 +20,6 @@ class NemoDriver(Driver):
         self.api.selling_stock(code, price, qty)
         print("success to sell")
 
-    def get_price(self, code, minute):
+    def get_price(self, code):
         self.api.get_market_price(code, SMALL_TIME)
         return self.api.get_market_price(code, SMALL_TIME)  # 테스트용 더미 데이터
